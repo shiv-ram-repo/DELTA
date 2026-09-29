@@ -1,0 +1,104 @@
+DELTA — Paper Verification Report
+Resolves file-checkable claims and audits baseline comparability.
+Does NOT run SPURS. Tells you which published numbers are borrowable.
+
+==========================================================================
+(A1) ARCHITECTURE & HYPERPARAMETERS — paste into \VERIFY marks
+==========================================================================
+  d (backbone representation dim)       : 1408 (= 1280 ESM-2 + 128 encoder)
+  d_enc (encoder projection dim)        : 128  [VERIFY this matches your config mlp.input_dim]
+  d_sub (mutation-type embed dim)       : 64
+  d_aa (residue-identity embed dim)     : 64
+  d_hidden (branch MLP width)           : 512
+  n_branch_layers                       : 3 (GELU, dropout 0.1)
+  n_context_heads                       : 8 (head dim = 1408/8 = 176)
+  k_neighbors                           : 32
+  sigma_init (distance kernel)          : 8.0 Angstrom (learned per head, log-parameterized)
+  ESM-2 model                           : esm2_t33_650M_UR50D (33 layers, 1280-dim)
+  adapter layer index                   : -3  [VERIFY matches your training flag]
+  cross-attention                       : embed_dim 1280, 8 heads
+  loss weights                          : reg 1.0 / bcas 0.5 / decomp_antisym 0.3 / mag 0.1
+  bcas alpha/beta                       : 1.0 / 0.5
+  magnitude slack gamma                 : 2.0
+  optimizer                             : AdamW lr 1e-4, weight_decay 1e-2, grad clip 1.0
+  schedule                              : up to 200 epochs, early stop patience 30
+  backbone fine-tune LR scale           : 0.1x (frozen regime: 0x)
+  primary loss                          : SmoothL1 (Huber)  [VERIFY: state if any reported run used BMC]
+  param counts                          : head 10.59M, mut-type embed 25,600, total trainable 21.1M
+
+  Items with [VERIFY] above still need a one-time check against the
+  exact config you launched (configs can drift from code defaults).
+
+==========================================================================
+(A2) TRAINING CONFIG (from your run directory)
+==========================================================================
+  No config json found. The training logs you pasted show:
+    seed=42 (delta_pretrained), seed=123 (delta_seed123),
+    loss_type=huber, adapter_layer=-3, k_neighbors=32, d_sub=64.
+  Confirm these match every run you report.
+
+==========================================================================
+(B) BENCHMARK SPLIT AUDIT — DELTA-U
+==========================================================================
+  DELTA-U eval CSV not provided/found; skipping.
+
+==========================================================================
+(B) BENCHMARK SPLIT AUDIT — DELTA-B
+==========================================================================
+  benchmark          your n  canonical  borrow published number?
+  ----------------------------------------------------------------
+  megascale_test      28172          ?  MANUAL — confirm split matches the source paper
+  fireport_hf          2578          ?  MANUAL — confirm split matches the source paper
+  ssym_direct           342        342  YES — same size; cite published number as comparable
+  ssym_inverse          342        342  YES — same size; cite published number as comparable
+  s669                  669        669  YES — same size; cite published number as comparable
+  s461                  461        461  YES — same size; cite published number as comparable
+  s783                  783        783  YES — same size; cite published number as comparable
+  s8754                8228       8754  NO — differs (8228 vs 8754); footnote or mark n/a
+  s2648                2648       2648  YES — same size; cite published number as comparable
+  s571                  571        571  YES — same size; cite published number as comparable
+  s4346                3969       4346  NO — differs (3969 vs 4346); footnote or mark n/a
+
+  RULE: only place a published SPURS (or other) number in the comparison
+  table for rows marked YES. For NO/MANUAL rows, either (a) recompute the
+  baseline in your pipeline, or (b) omit the baseline cell and note that the
+  split differs. Do not silently place a non-comparable number side by side
+  with your own — reviewers familiar with the benchmark will catch it.
+
+==========================================================================
+(C) DIAGNOSTIC NUMBERS — DELTA-U
+==========================================================================
+  (dataset inferred: s2648; state this dataset in the paper)
+  D1 reverse-consistency: rho(gain_fwd,loss_rev)=0.754 (p=0.0e+00)
+                          rho(loss_fwd,gain_rev)=0.729 (p=0.0e+00)
+  D2 conservative attenuation: cons=0.469 noncons=0.854 ratio=0.549 (n_cons=361)
+  D3 burial: rho(|loss|,contacts)=0.409  rho(|gain|,contacts)=0.320
+  Apportionment: gain share=64.6% (n=1192)
+
+==========================================================================
+(C) DIAGNOSTIC NUMBERS — DELTA-B
+==========================================================================
+  (dataset inferred: s2648; state this dataset in the paper)
+  D1 reverse-consistency: rho(gain_fwd,loss_rev)=0.865 (p=0.0e+00)
+                          rho(loss_fwd,gain_rev)=0.867 (p=0.0e+00)
+  D2 conservative attenuation: cons=0.463 noncons=0.820 ratio=0.565 (n_cons=361)
+  D3 burial: rho(|loss|,contacts)=0.350  rho(|gain|,contacts)=0.331
+  Apportionment: gain share=54.0% (n=1192)
+
+==========================================================================
+(D) EMBEDDING DIRECTIONALITY (D4) — DELTA-U
+==========================================================================
+  embedding .npy not provided; skipping.
+
+==========================================================================
+WHAT STILL REQUIRES A HUMAN (cannot be auto-verified)
+==========================================================================
+  - Citations: pull real references (ESM-2, ProteinMPNN, Tsuboyama 2023,
+    BLOSUM62, ACDC-NN, JanusDDG, SPURS, representative DDG predictors).
+  - SPURS baseline numbers: borrow ONLY for benchmarks marked YES in the
+    split audit above; cite as 'as reported by [SPURS]'. For S8754 and S4346
+    your valid-mutation counts (8228, 3969) differ from canonical sizes, so
+    those rows are likely NOT directly comparable — footnote or omit.
+  - MMseqs2 filtering description: state your identity threshold.
+  - Case-study figure: per-protein values + literature mechanisms.
+  - Author list, affiliations.

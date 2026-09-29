@@ -1,0 +1,5 @@
+null,null_gap_mean,null_gap_std,null_gap_p95,delta_gap,p_gap_ge_delta,null_rlossburial_mean,delta_rlossburial,p_rl_ge_delta
+N1_random_split,-0.0708,0.0085,-0.0573,0.0889,0.0,0.2904,0.4091,0.0
+N3_gaussian_offset,-0.1905,0.0194,-0.1592,0.0889,0.0,0.0005,0.4091,0.0
+N4_magnitude_matched,-0.0744,0.0095,-0.0586,0.0889,0.0,0.2904,0.4091,0.0
+N5_shuffle,-0.2954,0.0214,-0.2605,0.0889,0.0,-0.0001,0.4091,0.0

@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# R / editor files
+.Rhistory
+.RData
+.Ruserdata
+*.swp
+*.swo
+.DS_Store
+
+# Local experiment runs
+runs/
+outputs/
+results_out/
+*_out/
+diag_*/
+stab_pilot_out/
+case_study_out/
+case_study_out1/
+cavity_analysis/
+cavity_bidir/
+final_fig/
+
+# Large trained models
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# NumPy caches / large generated arrays
+*.npy
+*.npz
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+
+# Local machine files
+.env
+.env.*
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+.release_backup/

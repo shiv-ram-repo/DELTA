@@ -1,0 +1,7 @@
+config,mean_spearman,std_spearman,mean_pearson,std_pearson,mean_rmse,n_seeds
+B_decomp_only,0.7485,0.0016,0.7724,0.0032,0.6045,3
+C_mut_type,0.7483,0.001,0.7703,0.0032,0.6042,3
+D_mut_type_bcas,0.7457,0.0028,0.7688,0.0023,0.6054,3
+E_mut_type_bcas_dasym,0.7331,0.0053,0.7566,0.0079,0.6179,3
+F_full,0.7352,0.0038,0.7621,0.0072,0.6098,3
+G_full_bmc,0.7427,0.0018,0.7681,0.0024,0.7128,3

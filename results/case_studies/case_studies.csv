@@ -1,0 +1,19 @@
+wt,mut,mechanism,n,mean_gain,mean_loss,mean_ddg_pred,mean_ddg_true,expected_pattern,pattern_matches,mechanism_hint
+L,A,cavity,92,0.984,-0.545,1.529,2.544,large_loss_small_gain,False,"T4 lysozyme L99A; ~160A^3 cavity, lose hydrophobic packing"
+V,A,cavity,123,0.532,-0.518,1.049,1.696,large_loss_small_gain,False,core Val->Ala cavity creation
+I,A,cavity,84,0.835,-0.683,1.518,2.488,large_loss_small_gain,False,core Ile->Ala cavity creation
+F,A,cavity,34,1.363,-0.357,1.719,2.45,large_loss_small_gain,False,"aromatic->Ala, large cavity"
+L,G,cavity,12,1.259,-0.803,2.062,2.867,large_loss_small_gain,False,"core Leu->Gly, cavity + flexibility"
+A,V,overpack,33,0.213,-0.093,0.306,1.065,large_gain,False,core Ala->Val overpacking
+A,L,overpack,13,0.18,-0.143,0.323,-0.216,large_gain,False,core Ala->Leu steric strain
+G,A,overpack,64,0.217,-0.15,0.368,0.626,moderate_gain,True,"Gly->Ala, loss of flexibility"
+V,D,charge_bury,8,0.194,-0.291,0.484,0.39,large_gain,False,buried hydrophobic->charged Asp
+V,E,charge_bury,3,0.459,-0.586,1.045,1.033,large_gain,False,buried Val->Glu
+I,K,charge_bury,1,0.371,-0.737,1.109,2.69,large_gain,False,buried Ile->Lys
+A,P,pro_helix,2,0.272,0.071,0.2,-0.45,large_loss,False,Ala->Pro helix breaker
+A,G,gly_flex,75,0.589,-0.406,0.996,1.388,loss_dominated,False,Ala->Gly added flexibility
+L,I,surface,23,0.453,-0.164,0.617,1.198,small_both,False,conservative Leu<->Ile
+I,V,surface,94,0.319,-0.129,0.448,0.882,small_both,True,conservative Ile->Val
+D,E,surface,8,0.464,-0.026,0.49,-0.274,small_both,False,conservative Asp->Glu
+S,T,surface,10,0.283,-0.042,0.325,0.053,small_both,True,conservative Ser->Thr
+K,R,surface,11,0.032,0.031,0.001,0.218,small_both,True,conservative Lys->Arg

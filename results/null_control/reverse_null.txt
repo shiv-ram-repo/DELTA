@@ -1,0 +1,4 @@
+delta_revcons=0.7545
+null_mean=-0.0013
+null_std=0.0198
+p_two_sided=0.0000

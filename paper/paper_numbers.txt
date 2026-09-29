@@ -1,0 +1,61 @@
+DELTA — Consolidated Paper Numbers
+Generated for filling manuscript \VERIFY{} placeholders.
+
+========================================================================
+TABLE 1 — Spearman ρ by benchmark (paste into \VERIFY cells)
+========================================================================
+                DELTA-B
+dataset
+megascale_test   0.6673
+fireport_hf      0.5124
+ssym_direct      0.4974
+ssym_inverse     0.2008
+s669             0.4607
+s461             0.6389
+s783             0.6022
+s8754            0.5266
+s2648            0.5349
+s571             0.2881
+s4346            0.4936
+
+========================================================================
+SEED MEAN ± STD (report these, do NOT cherry-pick best seed)
+========================================================================
+  megascale_test     mean=0.6747  std=0.0069   (seeds: 0.6698, 0.6796)
+  fireport_hf        mean=0.5410  std=0.0132   (seeds: 0.5503, 0.5317)
+  ssym_direct        mean=0.5337  std=0.0663   (seeds: 0.5806, 0.4869)
+  ssym_inverse       mean=0.2897  std=0.0303   (seeds: 0.3111, 0.2683)
+  s669               mean=0.4932  std=0.0031   (seeds: 0.4954, 0.4910)
+  s461               mean=0.6604  std=0.0322   (seeds: 0.6376, 0.6832)
+  s783               mean=0.6281  std=0.0217   (seeds: 0.6435, 0.6128)
+  s8754              mean=0.5509  std=0.0117   (seeds: 0.5592, 0.5426)
+  s2648              mean=0.5640  std=0.0061   (seeds: 0.5683, 0.5597)
+  s571               mean=0.3796  std=0.0042   (seeds: 0.3766, 0.3826)
+  s4346              mean=0.5116  std=0.0090   (seeds: 0.5180, 0.5053)
+
+========================================================================
+DIAGNOSTICS — DELTA-U  (decomposition_s2648.csv)
+========================================================================
+  Reverse-consistency: ρ(gain_fwd,loss_rev)=0.754  ρ(loss_fwd,gain_rev)=0.729
+  Conservative attenuation: cons=0.469  noncons=0.854  ratio=0.549  (n_cons=361)
+  Burial association: ρ(|loss|,contacts)=0.409  ρ(|gain|,contacts)=0.320
+  Destabilization apportionment: gain fraction=64.6%  (n=1192)
+
+========================================================================
+DIAGNOSTICS — DELTA-B  (decomposition_s2648.csv)
+========================================================================
+  Reverse-consistency: ρ(gain_fwd,loss_rev)=0.865  ρ(loss_fwd,gain_rev)=0.867
+  Conservative attenuation: cons=0.463  noncons=0.820  ratio=0.565  (n_cons=361)
+  Burial association: ρ(|loss|,contacts)=0.350  ρ(|gain|,contacts)=0.331
+  Destabilization apportionment: gain fraction=54.0%  (n=1192)
+
+========================================================================
+CHECKLIST
+========================================================================
+  [ ] Table 1 cells filled from the accuracy table above
+  [ ] Ssym-direct reported as mean±std (see seed spread)
+  [ ] Reverse-consistency ρ stated WITH its dataset name
+  [ ] Conservative ratio stated WITH dataset
+  [ ] Burial ρ stated as 'modest' (loss vs gain both ~0.3)
+  [ ] DELTA-B apportionment + anti-symmetry contrast filled
+  [ ] SPURS column present (run eval_spurs_baseline.py if missing)
